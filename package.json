@@ -1,35 +1,48 @@
 {
-  "name": "mean-ang2",
-  "version": "1.0.0",
-  "description": "MEAN Stack with Angular 2",
-  "main": "index.js",
+  "name": "bloghub2",
+  "version": "0.0.0",
   "scripts": {
-    "start": "node index.js",
-    "build": "cd client && ng build --prod"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gugui3z24/MEAN-Stack-With-Angular-2-Tutorial.git"
-  },
-  "keywords": [
-    "MEAN",
-    "Stack",
-    "Angular",
-    "2",
-    "Application"
-  ],
-  "author": "David Acosta",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gugui3z24/MEAN-Stack-With-Angular-2-Tutorial/issues"
-  },
-  "homepage": "https://github.com/gugui3z24/MEAN-Stack-With-Angular-2-Tutorial#readme",
+  "private": true,
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.17.2",
-    "cors": "^2.8.3",
-    "express": "^4.15.3",
-    "jsonwebtoken": "^7.4.1",
-    "mongoose": "^4.10.2"
+    "@angular/animations": "~7.1.0",
+    "@angular/common": "~7.1.0",
+    "@angular/compiler": "~7.1.0",
+    "@angular/core": "~7.1.0",
+    "@angular/forms": "~7.1.0",
+    "@angular/platform-browser": "~7.1.0",
+    "@angular/platform-browser-dynamic": "~7.1.0",
+    "@angular/router": "~7.1.0",
+    "core-js": "^2.5.4",
+    "rxjs": "~6.3.3",
+    "tslib": "^1.9.0",
+    "zone.js": "~0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.11.0",
+    "@angular/cli": "~7.1.1",
+    "@angular/compiler-cli": "~7.1.0",
+    "@angular/language-service": "~7.1.0",
+    "@types/node": "~8.9.4",
+    "@types/jasmine": "~2.8.8",
+    "@types/jasminewd2": "~2.0.3",
+    "codelyzer": "~4.5.0",
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~3.1.1",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.1.6"
   }
 }

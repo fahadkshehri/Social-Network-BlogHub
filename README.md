@@ -1,60 +1,27 @@
+# Bloghub2
 
-## MEAN Stack with Angular 2 Tutorial
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
 
-This is an application demonstrating the basic components needed for a Single Page Application using MongoDB, ExpressJS, Angular 2, and NodeJS.
+## Development server
 
-A working example can be found [here](https://damp-bastion-39490.herokuapp.com/). Additionally, a YouTube tutorial series illustrating how to create this application from scratch can be found [here](https://youtu.be/pDYhwfi7VU0).
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Requirements
+## Code scaffolding
 
-- NodeJS
-- MongoDB
-- @angular/cli
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Description
+## Build
 
-This applications demonstrates how to setup a RESTful API using NodeJS with Angular 2 Frontend. The application features a blog feed, where users can post comments, like posts, dislike posts, and create/edit/delete their own blog posts.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Installation
+## Running unit tests
 
-- Install all dependencies in package.json file. This can be done by navigating to the root directory in the command line interface and running the following command:
-```
-$ npm install
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-- Next, install all of the Angular 2 development dependencies in package.json file:
-```
-$ cd client/
-$ npm install
-```
+## Running end-to-end tests
 
-- Installation is complete. Navigate to the root directory and then:  
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Production
--- In root directory:
-```
-$ npm run build
-$ npm start
-```
--- Access production server at: http://localhost:8080
+## Further help
 
-## Development
-```
-$ cd client/
-$ ng serve
-```
--- In another window, from root directory run:
-```
-$ npm start
-```
--- Access development server at: http://localhost:4200
-
--- Access API at: http://localhost:8080
-
-
-## Contributors
-Fahad Alshehri, Fatih Ridha, Abdulrahman Alajrami
-
-## License
-
-No license.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
