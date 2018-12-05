@@ -10,10 +10,9 @@
 
   </head>
   <body>
-
-    <div class="wrapper">
-
-    </div>
-
+    <h1>BlogHub</h1>
+    <a href='login.php'>Login</a>
+    <br/>
+    <a href='register.php'>Register</a>
   </body>
 </html>
