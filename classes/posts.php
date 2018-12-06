@@ -92,9 +92,9 @@ class Posts{
 
         $eav = $marshaler->marshalJson('
             {
-                ":r": 5.5 ,
-                ":p": "Everything happens all at once.",
-                ":a": [ "Larry", "Moe", "Curly" ]
+                ":t": "'.$title.'" ,
+                ":i": "'$img'",
+                ":t": "'$text'"
             }
         ');
 
