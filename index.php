@@ -19,10 +19,8 @@
     <br/>
     <a href='index.php'>Home</a>
     <br/>
-
-
-
-
+    <a href='edit-post.php'>edit post</a>
+    <br/>
 
   </body>
 </html>
