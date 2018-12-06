@@ -14,5 +14,15 @@
     <a href='login.php'>Login</a>
     <br/>
     <a href='register.php'>Register</a>
+    <br/>
+    <a href='profile.php'>Profile</a>
+    <br/>
+    <a href='index.php'>Home</a>
+    <br/>
+
+
+
+
+
   </body>
 </html>
