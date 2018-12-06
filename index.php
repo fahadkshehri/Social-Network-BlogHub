@@ -11,16 +11,12 @@
   </head>
   <body>
     <h1>BlogHub</h1>
-    <a href='login.php'>Login</a>
-    <br/>
-    <a href='register.php'>Register</a>
-    <br/>
-    <a href='profile.php'>Profile</a>
-    <br/>
-    <a href='index.php'>Home</a>
-    <br/>
-    <a href='edit-post.php'>edit post</a>
-    <br/>
-
+    <ul>
+      <li><a href='login.php'>Login</a></li> 
+      <li><a href='register.php'>Register</a></li>
+      <li><a href='profile.php'>Profile</a></li>
+      <li><a href='index.php'>Home</a></li>
+      <li><a href='edit-post.php'>edit post</a></li>
+    </ul>
   </body>
 </html>
