@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Homepage</title>
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/app.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-  </head>
+  <?php
+include 'head.php';
+?>
   <body>
-    <h1>BlogHub</h1>
-    <ul>
-      <li><a href='login.php'>Login</a></li> 
-      <li><a href='register.php'>Register</a></li>
-      <li><a href='profile.php'>Profile</a></li>
-      <li><a href='index.php'>Home</a></li>
-      <li><a href='edit-post.php'>edit post</a></li>
-    </ul>
+  <?php
+include 'menu.php';
+?>
+    <div class='container p-5'>
+  <?
+include 'post_preview.php';
+for ($i = 0; $i < 5; $i++) {
+    echo_post_preview("Post " . $i, "Post content #" . $i);
+}
+?>
+    </div>
   </body>
 </html>

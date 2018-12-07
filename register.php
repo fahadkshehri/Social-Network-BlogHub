@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Homepage</title>
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/app.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-  </head>
+  <?php
+include 'head.php';
+?>
   <body>
-    <h1>BlogHub - Register</h1>
-    <p>Enter a username and password.</p>
-    <form>
-      Username:
-      <input type='text' name='username'>
-      <br/>
+  <?php
+include 'menu.php';
+?>
+    <div class='container p-5 mb-2'>
+      <h2>Register an Account</h2>
+      <form class='border p-4'>
+        <div class='form-group'>
+          <label for='username'>Username:</label>
+          <input type='text' class='form-control' id='username'>
+        </div>
+        <div class='form-group'>
+          <label for='password'>Password:</label>
+          <input type='password' class='form-control' id='password'>
+        </div>
 
-      Password: 
-      <input type='password' name='password'>
+        <button type='submit' class='btn btn-lg btn-dark'>Register</button>
+      </form>
 
-      <br />
-      <br />
-      <input type='submit'/>
-    </form>
-
-    <br />
-    <p>Already have an account? <a href='login.php'>Login here.</a></p>
-
-    <a href='./'>Back to Home</a>
+      Already have an account? <a href='login.php'>Login here.</a>
+    </div>
   </body>
 </html>
