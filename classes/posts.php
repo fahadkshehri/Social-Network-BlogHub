@@ -1,7 +1,7 @@
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
-$dsn = 'mysql:host=aa1cqahmu0x18pk.cisqnd3qf2b5.us-west-2.rds.amazonaws.com:3306;dbname=aa1cqahmu0x18pk;charset=utf8';
+$dsn = 'mysql:host=bloghub-rds.cisqnd3qf2b5.us-west-2.rds.amazonaws.com:3306;dbname=bloghub;charset=utf8';
 $usr = 'BlogHubMaster';
 $pwd = 'abdulfahadfatih';
 
@@ -12,9 +12,9 @@ $selectStatement = $pdo->select()
     ->from('users');
 
 $stmt = $selectStatement->execute();
-$data = $stmt->fetch();
+$data = $stmt->fetchAll();
 
-var_dump(data);
+var_dump($data);
 
 class Posts
 {
