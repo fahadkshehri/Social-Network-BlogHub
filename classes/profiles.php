@@ -21,7 +21,36 @@ $tableName = 'bloghub-profiles';
 
 class Profiles {
 
-  public function getProfile(){}
+  public function getProfile($profileID){
+    $key = $marshaler->marshalJson('
+    {
+      "profileID": "'.$profileID.'"
+    }
+
+    ');
+
+    $params = [
+      'TableName' => $tableName,
+      'Key' => $key
+    ];
+
+    echo "Querying for a profile given its id " . $profileID . "\n";
+
+    try {
+      $result = $dynamodb->query($params);
+
+      echo "Query succeeded. \n";
+
+      foreach ($result['Items'] as $profileID) {
+      echo $marshaler->unmarshalValue(bloghub-profiles['profileID']) . "\n";
+  }
+
+} catch (DynamoDbException $e) {
+  echo "Unable to query:\n";
+  echo $e->getMessage() . "\n";
+}
+    }
+  }
 
   public function deleteProfile($username){
     $key = $marshaler->marshalJson('
@@ -33,7 +62,7 @@ class Profiles {
 
     $params = [
         'TableName' => $tableName,
-        'Key' => $key,
+        'Key' => $key
     ];
 
     try {
