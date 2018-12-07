@@ -1,8 +1,8 @@
 <?php
 require '../vendor/autoload.php';
 
-$dsn = 'mysql:host=bloghub-rds.cisqnd3qf2b5.us-west-2.rds.amazonaws.com:3306;dbname=bloghub;charset=utf8';
-$usr = 'BlogHubMaster';
+$dsn = 'mysql:host=bloghubsql.c1mzdglfzjuq.us-west-2.rds.amazonaws.com;dbname=bloghub;port=3306;charset=utf8';
+$usr = 'bloghubmaster';
 $pwd = 'abdulfahadfatih';
 
 $pdo = new \Slim\PDO\Database($dsn, $usr, $pwd);
