@@ -1,15 +1,15 @@
 <?php
 require '../vendor/autoload.php';
 
-$dsn = 'mysql:host=bloghubsql.c1mzdglfzjuq.us-west-2.rds.amazonaws.com;dbname=bloghub;port=3306;charset=utf8';
-$usr = 'bloghubmaster';
-$pwd = 'abdulfahadfatih';
+$dsn = 'mysql:host=localhost;dbname=bloghub;charset=utf8';
+$usr = 'root';
+$pwd = 'rootroot';
 
 $pdo = new \Slim\PDO\Database($dsn, $usr, $pwd);
 
 // SELECT * FROM users WHERE id = ?
 $selectStatement = $pdo->select()
-    ->from('users');
+    ->from('follows');
 
 $stmt = $selectStatement->execute();
 $data = $stmt->fetchAll();
@@ -40,4 +40,3 @@ class Posts
     }
 
 }
-?>

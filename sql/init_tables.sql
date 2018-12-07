@@ -1,6 +1,6 @@
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(128) NOT NULL,
+    username VARCHAR(128) NOT NULL UNIQUE,
     password BINARY(64) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -8,7 +8,7 @@ CREATE TABLE users (
 CREATE TABLE posts (
     id INT NOT NULL AUTO_INCREMENT,
     title NVARCHAR(60) NOT NULL,
-    img NVARCHAR(2083),
+    img_url NVARCHAR(2083),
     content LONGTEXT,
     owner_id INT NOT NULL,
     PRIMARY KEY (id),
