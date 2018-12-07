@@ -1,7 +1,7 @@
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
-$dsn = 'mysql:host=aa1cqahmu0x18pk.cisqnd3qf2b5.us-west-2.rds.amazonaws.com:3306;dbname=aa1cqahmu0x18pk;charset=utf8';
+$dsn = 'mysql:host=aa1cqahmu0x18pk.cisqnd3qf2b5.us-west-2.rds.amazonaws.com;dbname=aa1cqahmu0x18pk;port=3306;charset=utf8';
 $usr = 'BlogHubMaster';
 $pwd = 'abdulfahadfatih';
 

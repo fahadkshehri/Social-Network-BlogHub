@@ -9,7 +9,7 @@ use Aws\S3\S3Client;
 date_default_timezone_set('UTC');
 
 $sdk = new Aws\Sdk([
-    //'endpoint'   => 'http://localhost:8000',
+    'endpoint'   => 'http://localhost:8000',
     'region'   => 'us-west-2',
     'version'  => 'latest',
 ]);
