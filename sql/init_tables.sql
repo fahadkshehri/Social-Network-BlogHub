@@ -1,7 +1,7 @@
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(128) NOT NULL UNIQUE,
-    password BINARY(64) NOT NULL,
+    password VARCHAR(128) NOT NULL,
     PRIMARY KEY (id)
 );
 

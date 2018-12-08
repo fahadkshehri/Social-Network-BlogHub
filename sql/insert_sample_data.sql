@@ -1,6 +1,6 @@
 INSERT INTO users (username, password) VALUES ('abdul', SHA2('abc', 512));
-INSERT INTO users (username, password) VALUES ('fahad', SHA2('abc', 512));
-INSERT INTO users (username, password) VALUES ('fatih', SHA2('abc', 512));
+INSERT INTO users (username, password) VALUES ('fahad', SHA2('123', 512));
+INSERT INTO users (username, password) VALUES ('fatih', SHA2('xyz', 512));
 
 INSERT INTO posts (title, content, owner_id) VALUES ('My First Post', 'blah blah blah', 1);
 INSERT INTO posts (title, content, owner_id) VALUES ('Coding', 'blahsdhasdhasjdh jklashdjk las hdljk sasdj ', 2);
