@@ -48,6 +48,7 @@ function loginUser($username, $password)
         if ($pdostatement->rowCount() == 0) {
             return 'Login failed; that username/password combination does not exist.';
         } else {
+            $_SESSION['username'] = $username;
             header('Location: ./');
         }
     } catch (PDOException $e) {
