@@ -17,13 +17,18 @@ $dynamodb = $sdk->createDynamoDb();
 $marshaler = new Marshaler();
 $tableName = 'bloghub-profiles';
 
+
+
 class Profiles
 {
-    public function getProfile($profileID)
+
+    getProfile("fatih");
+
+    public function getProfile($username)
     {
         $key = $marshaler->marshalJson('
             {
-                "profileID": "' . $profileID . '"
+                "profileID": "' . $username . '"
             }
         ');
 
@@ -32,15 +37,15 @@ class Profiles
             'Key' => $key,
         ];
 
-        echo "Querying for a profile given its id " . $profileID . "\n";
+        echo "Querying for a profile given its id " . $username . "\n";
 
         try {
             $result = $dynamodb->query($params);
 
             echo "Query succeeded. \n";
 
-            foreach ($result['Items'] as $profileID) {
-                echo $marshaler->unmarshalValue(bloghub - profiles['profileID']) . "\n";
+            foreach ($result['Items'] as $username) {
+                echo $marshaler->unmarshalValue(bloghub - profiles['username']) . "\n";
             }
 
         } catch (DynamoDbException $e) {
