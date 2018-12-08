@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require 'vendor/autoload.php';
 
 $dsn = 'mysql:host=localhost;dbname=bloghub;charset=utf8';
 $usr = 'root';

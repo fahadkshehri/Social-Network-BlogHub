@@ -6,7 +6,6 @@ $profile = new Profiles();
 
 if(isset( $_GET['username'])){
   $username = $_GET['username'];
-
   $profile->getProfile($username);
 }
 
@@ -14,13 +13,9 @@ if(isset( $_GET['username'])){
 ?>
 <!DOCTYPE html>
 <html>
-  <?php
-include 'head.php';
-?>
+  <?php include 'head.php'; ?>
   <body>
-  <?php
-include 'menu.php';
-?>
+    <?php include 'menu.php'; ?>
 
     <div class='container p-5'>
       <h1>Profile Page</h1>
@@ -32,6 +27,8 @@ include 'menu.php';
 
       </div>
       <a class='btn btn-primary' href='edit-profile.php'>Edit Profile</a>
+      
     </div>
+
   </body>
 </html>
