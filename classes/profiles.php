@@ -2,10 +2,10 @@
 require 'vendor/autoload.php';
 
 use Aws\DynamoDb\Exception\DynamoDbException;
+use Aws\DynamoDb\Marshaler;
 
 date_default_timezone_set('UTC');
 
-use Aws\DynamoDb\Marshaler;
 
 $sdk = new Aws\Sdk([
     'endpoint' => 'http://localhost:8000',
@@ -53,19 +53,19 @@ class Profiles
 
     public function deleteProfile($username)
     {
-        $key = $marshaler->marshalJson('
+        $key = $GLOBALS['marshaler']->marshalJson('
             {
                 "username": "' . $username . '"
             }
         ');
 
         $params = [
-            'TableName' => $tableName,
+            'TableName' => $GLOBALS['tableName'],
             'Key' => $key,
         ];
 
         try {
-            $result = $dynamodb->deleteItem($params);
+            $result = $GLOBALS['dynamodb']->deleteItem($params);
             echo "Deleted profile with a user name item." . $username . "\n";
 
         } catch (DynamoDbException $e) {
@@ -75,9 +75,40 @@ class Profiles
 
     }
 
-    public function editProfile()
+    public function editProfile($name, $username, $img, $bio)
     {
-      
+        $key = $GLOBALS['marshaler']->marshalJson('
+          {
+              "username": "' . $username . '"
+          }
+        ');
+
+
+        $eav = $GLOBALS['marshaler']->marshalJson('
+            {
+                ":name": "'.$name.'" ,
+                ":img": "'.$img.'",
+                ":bio": "'.$bio.'"
+            }
+        ');
+
+        $params = [
+            'TableName' => $GLOBALS['tableName'],
+            'Key' => $key,
+            'UpdateExpression' =>
+                'set profileName = :name, img=:img, bio=:bio',
+            'ExpressionAttributeValues'=> $eav,
+            'ReturnValues' => 'UPDATED_NEW'
+        ];
+
+        try {
+            $result = $GLOBALS['dynamodb']->updateItem($params);
+
+        } catch (DynamoDbException $e) {
+            echo "Unable to update item:\n";
+            echo $e->getMessage() . "\n";
+        }
+
     }
 
 }
