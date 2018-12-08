@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use Aws\DynamoDb\Exception\DynamoDbException;
 
@@ -21,9 +21,19 @@ class Profiles
 {
     public function getProfile($profileID)
     {
+        $sdk = new Aws\Sdk([
+            'region' => 'us-west-2',
+            'version' => 'latest',
+            'scheme' => 'http',
+        ]);
+
+        $dynamodb = $sdk->createDynamoDb();
+        $marshaler = new Marshaler();
+        $tableName = 'bloghub-profiles';
+
         $key = $marshaler->marshalJson('
             {
-                "profileID": "' . $profileID . '"
+                "username": "' . $profileID . '"
             }
         ');
 
