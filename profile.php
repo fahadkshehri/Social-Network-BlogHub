@@ -1,14 +1,19 @@
 
-?>
-<!DOCTYPE html>
-<html>
-  <?php
-include 'head.php';
-?>
 
 <!DOCTYPE html>
 <html>
   <head>
+
+    ?>
+    <!DOCTYPE html>
+    <html>
+      <?php
+    include 'head.php';
+    ?>
+      <body>
+      <?php
+    include 'menu.php';
+    ?>
     <title>Homepage</title>
 
     <script src="js/jquery-3.3.1.min.js"></script>
