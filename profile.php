@@ -2,10 +2,13 @@
 include 'classes/profiles.php';
 
 session_start();
-$username = $_GET['username'];
+if(isset( $_GET['username'])){
+  $username = $_GET['username'];
 
-$profile = new Profiles();
-$profile->getProfile($username);
+  $profile = new Profiles();
+  $profile->getProfile($username);
+
+}
 
 ?>
 <!DOCTYPE html>

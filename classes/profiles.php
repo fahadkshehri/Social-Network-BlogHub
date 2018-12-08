@@ -8,9 +8,14 @@ date_default_timezone_set('UTC');
 use Aws\DynamoDb\Marshaler;
 
 $sdk = new Aws\Sdk([
+    'endpoint' => 'http://localhost:8000',
     'region' => 'us-west-2',
     'version' => 'latest',
     'scheme' => 'http',
+    'credentials' => [
+         'key' => 'not-a-real-key',
+         'secret' => 'not-a-real-secret',
+     ],
 ]);
 
 $dynamodb = $sdk->createDynamoDb();
@@ -18,50 +23,28 @@ $marshaler = new Marshaler();
 $tableName = 'bloghub-profiles';
 
 
-
 class Profiles
 {
 
-    getProfile("fatih");
 
     public function getProfile($username)
     {
-        $sdk = new Aws\Sdk([
-            'region' => 'us-west-2',
-            'version' => 'latest',
-            'scheme' => 'http',
-        ]);
 
-        $dynamodb = $sdk->createDynamoDb();
-        $marshaler = new Marshaler();
-        $tableName = 'bloghub-profiles';
 
-        $key = $marshaler->marshalJson('
+        $key = $GLOBALS['marshaler']->marshalJson('
             {
-<<<<<<< HEAD
-                "profileID": "' . $username . '"
-=======
-                "username": "' . $profileID . '"
->>>>>>> 4167ceb2f633b498c0fafcda8a9a4c48fd74d3a5
+                "username": "' . $username . '"
             }
         ');
 
         $params = [
-            'TableName' => $tableName,
+            'TableName' => $GLOBALS['tableName'],
             'Key' => $key,
         ];
 
-        echo "Querying for a profile given its id " . $username . "\n";
 
         try {
-            $result = $dynamodb->query($params);
-
-            echo "Query succeeded. \n";
-
-            foreach ($result['Items'] as $username) {
-                echo $marshaler->unmarshalValue(bloghub - profiles['username']) . "\n";
-            }
-
+            $result = $GLOBALS['dynamodb']->getItem($params);
         } catch (DynamoDbException $e) {
             echo "Unable to query:\n";
             echo $e->getMessage() . "\n";
@@ -93,6 +76,8 @@ class Profiles
     }
 
     public function editProfile()
-    {}
+    {
+      
+    }
 
 }
