@@ -1,6 +1,19 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
+
+    ?>
+    <!DOCTYPE html>
+    <html>
+      <?php
+    include 'head.php';
+    ?>
+      <body>
+      <?php
+    include 'menu.php';
+    ?>
     <title>Homepage</title>
 
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -14,7 +27,7 @@
 
     <p>Username: </p>
     <p>Email: </p>
-    
+
     <p>Bio: </p>
 
     <a href='edit-profile.php'>Edit Profile</a>
