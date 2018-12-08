@@ -1,3 +1,11 @@
+
+?>
+<!DOCTYPE html>
+<html>
+  <?php
+include 'head.php';
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,7 +22,7 @@
 
     <p>Username: </p>
     <p>Email: </p>
-    
+
     <p>Bio: </p>
 
     <a href='edit-profile.php'>Edit Profile</a>
