@@ -1,7 +1,7 @@
 <!-- //مكان تكتب الاسم
 مكان تكتب في البايو انبت كلها
 وملف تسوي فيه ابلود للبيكتشر -->
-
+<? include("classes/profiles.php"); ?>
 
 <!DOCTYPE html>
 <html>
@@ -13,27 +13,39 @@
 
 
     <?php
+
+
+      if(isset($_GET['username'])){
+        $username = $_GET['username'];
+      }
+
+      $profile = new profiles();
+
       if(isset($_POST['submit'])){
-        $check = $_FILES["fileToUpload"]["tmp_name"];
-        echo $check;
+        $urlToImg = $profile->uploadPic($_FILES["fileToUpload"]["tmp_name"], $username );
+        $profile->editProfile($_POST['name'], $_GET['username'], $urlToImg, $_POST['bio']);
+        echo " succefully edited";
       }
 
 
     ?>
 
 
-    <form action="edit-profile.php" method="post" enctype="multipart/form-data">
-      First name: <input type="text" name="name" id="name"><br>
-      <br >
-      <textarea name="bio" id="bio" rows="4" cols="50">
-          Enter your bio here..
-      </textarea>
+    <form action="edit-profile.php?username=<? echo $_GET['username']; ?>" method="post" enctype="multipart/form-data">
+      First name:
+      <input type="text" name="name" id="name">
       <br>
+
+      <textarea name="bio" id="bio" rows="4" cols="50">Enter your bio here..</textarea>
+      <br>
+
       Select image to upload:
       <input type="file" name="fileToUpload" id="fileToUpload">
       <br>
+
       <input type="submit" value="Upload Image" name="submit">
       <br>
+
     </form>
 
 
