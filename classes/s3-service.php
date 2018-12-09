@@ -34,6 +34,31 @@ class S3 {
 
   }
 
+  public function uploadPostPic($imgPath,$postID){
+    $s3 = new Aws\S3\S3Client([
+      'region'  => 'us-west-2',
+      'version' => 'latest',
+      'scheme' => 'http',
+    ]);
+
+    // Send a PutObject request and get the result object.
+    $key = 'profile-'. $username .'.jpg';
+
+    $result = $s3->putObject([
+      'Bucket' => 'bloghub-profilepics',
+      'Key'    => $key,
+      'Body'   => 'this is the body!',
+      'ACL' => 'public-read',
+      'SourceFile' => $imgPath // use this if you want to upload a file from a local location
+    ]);
+
+    //Return the url for the uploaded img
+    return $result["@metadata"]["effectiveUri"];
+
+  }
+
+
+
 }
 
 ?>

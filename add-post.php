@@ -16,7 +16,7 @@
       $s3 = new S3();
 
       if(isset($_POST['submit'])){
-        $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $username );
+        $urlToImg = $s3->uploadPostPic($_FILES["fileToUpload"]["tmp_name"], $username );
         $posts = new Posts();
         $posts->addPost($_POST['postTitle'], 1, $_POST['content'], $urlToImg);
         echo " succefully added post";
