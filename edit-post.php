@@ -1,27 +1,73 @@
+<?
+  include ("classes/s3-service.php");
+  include ("classes/posts.php");
+?>
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Homepage</title>
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/app.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-  </head>
+  <?php include 'head.php'; ?>
   <body>
-    <h1>Edit Post Page</h1>
+    <?php include 'menu.php'; ?>
+    <h1>Add post</h1>
+    <p>Complete the following data to add post:</p>
 
-    <p>Post's Title </p>
-    <p>Upload a post thumbnail: </p>
-    <input type="file" >
-    <!-- todo: Take the picture and add to Blob Storage using php sytntax   -->
-    <p>Post content </p>
 
-    <a href='edit-profile.php'>Edit Profile</a>
+    <?php
+      $posts = new Posts();
 
-    <br/>
-    <br/>
+      if( isset($_GET['id']) ){
+        $postID = $_GET['id'];
+        $currentPost = $posts->getPost($postID);
+      }
+
+      $s3 = new S3();
+
+      if(isset($_POST['submit'])){
+
+        $urlToImg = $currentPost['img_url'];
+
+        if($_FILES["fileToUpload"]["tmp_name"]  != ""){
+          $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $username );
+        }
+
+        $posts->editPost($postID, $_POST['postTitle'], $urlToImg, $_POST['content']);
+        echo " succefully edited post";
+
+        $postID = $_GET['id'];
+        $currentPost = $posts->getPost($postID);
+
+      }
+
+
+
+    ?>
+
+
+    <form action="edit-post.php?id=<? echo $postID; ?>" method="post" enctype="multipart/form-data">
+
+      Enter Post title:
+      <input type="text" name="postTitle" id="postTitle" value="<? echo $currentPost['title']; ?>">
+      <br>
+
+      Enter Post text:
+      <textarea name="content" id="content" rows="4" cols="50"><? echo $currentPost['content']; ?></textarea>
+      <br>
+
+      <img width="100" src="<? echo $currentPost['img_url']; ?>" alt>
+      <br>
+
+      Select post image to upload:
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <br>
+
+      <input type="submit" value="Add post" name="submit">
+      <br>
+
+    </form>
+
+
+
     <a href='./'>Back to Home</a>
+
   </body>
 </html>

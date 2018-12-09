@@ -1,7 +1,8 @@
-<!-- //مكان تكتب الاسم
-مكان تكتب في البايو انبت كلها
-وملف تسوي فيه ابلود للبيكتشر -->
-<? include("classes/profiles.php"); ?>
+
+<?
+  include ("classes/s3-service.php");
+  include ("classes/profiles.php");
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -19,12 +20,25 @@
         $username = $_GET['username'];
       }
 
+      $s3 = new S3();
       $profile = new profiles();
 
       if(isset($_POST['submit'])){
-        $urlToImg = $profile->uploadPic($_FILES["fileToUpload"]["tmp_name"], $username );
-        $profile->editProfile($_POST['name'], $_GET['username'], $urlToImg, $_POST['bio']);
-        echo " succefully edited";
+
+        $urlToImg = " ";
+
+        if($_FILES["fileToUpload"]["tmp_name"]  != ""){
+          $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $username );
+        }
+
+        if($_POST['name'] == "" || $_POST['bio'] == ""){
+          echo "Bio and name can't be left empty\n";
+        } else {
+          $profile->editProfile($_POST['name'], $_GET['username'], $urlToImg, $_POST['bio']);
+          echo " succefully edited";
+        }
+
+
       }
 
 

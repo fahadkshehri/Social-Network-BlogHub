@@ -20,13 +20,6 @@ $sdk = new Aws\Sdk([
 ]);
 
 
-$s3 = new Aws\S3\S3Client([
-	'region'  => 'us-west-2',
-	'version' => 'latest',
-  'scheme' => 'http',
-]);
-
-
 $dynamodb = $sdk->createDynamoDb();
 $marshaler = new Marshaler();
 $tableName = 'bloghub-profiles';
@@ -34,12 +27,32 @@ $tableName = 'bloghub-profiles';
 
 class Profiles
 {
+    public function addProfile($username)
+    {
+      $item = $GLOBALS['marshaler']->marshalJson('
+          {
+              "username": "' . $username . '"
+          }
+      ');
 
+      $params = [
+          'TableName' => $GLOBALS['tableName'],
+          'Item' => $item
+      ];
+
+
+      try {
+          $result = $GLOBALS['dynamodb']->putItem($params);
+          echo "Added item.\n";
+
+      } catch (DynamoDbException $e) {
+          echo "Unable to add item:\n";
+          echo $e->getMessage() . "\n";
+      }
+    }
 
     public function getProfile($username)
     {
-
-
         $key = $GLOBALS['marshaler']->marshalJson('
             {
                 "username": "' . $username . '"
@@ -84,47 +97,21 @@ class Profiles
 
     }
 
-    public function uploadPic($imgPath,$username){
-      // Send a PutObject request and get the result object.
-      $key = 'profile-'. $username .'.jpg';
-
-      $result = $GLOBALS['s3']->putObject([
-      	'Bucket' => 'bloghub-profilepics',
-      	'Key'    => $key,
-      	'Body'   => 'this is the body!',
-        'ACL' => 'public-read',
-      	'SourceFile' => $imgPath // use this if you want to upload a file from a local location
-      ]);
-
-      // Print the body of the result by indexing into the result object.
-      return $result["@metadata"]["effectiveUri"];
-
-    }
-
     public function editProfile($name, $username, $img, $bio)
     {
-        $name = 'fahad';
-        $username = 'fahad';
-        $img = "pic.jpg";
-        $bio = "sometext";
-
         $marshaler = new Marshaler();
 
-        echo $name ." ". $username ." ". $img ." ". $bio;
-        if($name == " " || $username == " " || $img == " " || $bio == " "){
-          echo "Empty spaces!";
+        $keyString = '{"username": "' . $username . '"}';
+        $key = $marshaler->marshalJson($keyString);
 
-        }
-
-        $key = $marshaler->marshalJson('{"username": "' . $username . '",}');
-
-        $eav = $marshaler->marshalJson('
+        $eavString  = '
             {
                 ":name": "'.$name.'" ,
                 ":img": "'.$img.'",
-                ":bio": "'.$bio.'",
+                ":bio": "'.$bio.'"
             }
-        ');
+        ';
+        $eav = $marshaler->marshalJson($eavString);
 
         $params = [
             'TableName' => $GLOBALS['tableName'],

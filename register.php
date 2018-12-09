@@ -15,40 +15,46 @@ if (isset($_POST['username']) || isset($_POST['password'])) {
     }
 
     if (count($errors) == 0) {
-        $errors[] = registerUser($username, $password);
+        $registerResult = registerUser($username, $password);
+        if ($registerResult !== '')
+          $errors[] = $registerResult;
         if (count($errors) == 0) {
-            login($username, $password);
+            loginUser($username, $password);
         }
     }
 }
 ?>
 <!DOCTYPE html>
 <html>
-  <?php
-include 'head.php';
-?>
+  <?php include 'head.php'; ?>
   <body>
-  <?php
-include 'menu.php';
-?>
+    <?php include 'menu.php'; ?>
+
+
+
     <div class='container p-5 mb-2'>
       <h2>Register an Account</h2>
       <form class='border p-4' action='register.php' method='post'>
         <?
-if (count($errors) > 0) {
-    ?>
-    <ul class='mb-3'>
-    <?
-    foreach ($errors as $error) {
+            if (count($errors) > 0) {
+                ?>
+                <ul class='mb-3'>
+                <?
+                foreach ($errors as $error) {
+                    ?>
+                  <li class='text-danger'><?=$error ?></li>
+                <?
+                }
+                ?>
+                </ul>
+              <?
+            } else {
+              if(isset($_POST['username'])){
+                header("Location: edit-profile.php?username=".$_POST['username']."&success=true");
+                die();
+              }
+            }
         ?>
-      <li class='text-danger'><?=$error ?></li>
-    <?
-    }
-    ?>
-    </ul>
-  <?
-}
-?>
         <div class='form-group'>
           <label for='username'>Username:</label>
           <input type='text' class='form-control' id='username' name='username'>
