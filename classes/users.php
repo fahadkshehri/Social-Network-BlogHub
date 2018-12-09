@@ -1,14 +1,12 @@
 <?php
 require 'vendor/autoload.php';
 
+include 'getPDO.php';
+
 function registerUser($username, $password)
 {
     try {
-        $dsn = 'mysql:host=localhost;dbname=bloghub;charset=utf8';
-        $usr = 'root';
-        $pwd = 'rootroot';
-
-        $pdo = new \Slim\PDO\Database($dsn, $usr, $pwd);
+        $pdo = getPDO();
 
         $selectStatement = $pdo->select()
             ->from('users')
@@ -16,7 +14,7 @@ function registerUser($username, $password)
         $pdostatement = $selectStatement->execute();
 
         if ($pdostatement->rowCount() > 0) {
-            return 'Username already exists';
+            return 'Username already exists.';
         } else {
             $insertStatement = $pdo->insert(array('username', 'password'))
                 ->into('users')
@@ -33,11 +31,7 @@ function registerUser($username, $password)
 function loginUser($username, $password)
 {
     try {
-        $dsn = 'mysql:host=localhost;dbname=bloghub;charset=utf8';
-        $usr = 'root';
-        $pwd = 'rootroot';
-
-        $pdo = new \Slim\PDO\Database($dsn, $usr, $pwd);
+        $pdo = getPDO();
 
         $selectStatement = $pdo->select()
             ->from('users')
