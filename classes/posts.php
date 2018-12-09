@@ -1,13 +1,31 @@
 <?php
+set_include_path('../');
 require 'vendor/autoload.php';
 
-$dsn = 'mysql:host=localhost;dbname=bloghub;charset=utf8';
-$usr = 'root';
-$pwd = 'rootroot';
+include 'getPDO.php';
 
-$pdo = new \Slim\PDO\Database($dsn, $usr, $pwd);
+function getAllPosts()
+{
+    try {
+        $pdo = getPDO();
 
+        // SELECT title, img_url, content, username
+        // FROM posts
+        // INNER JOIN users ON posts.owner_id = users.id
+        // ORDER BY posts.id DESC
+        $posts = $pdo->select(array('title', 'img_url', 'content', 'username'))
+            ->from('posts')
+            ->join('users', 'posts.owner_id', '=', 'users.id')
+            ->orderBy('posts.id', 'DESC')
+            ->execute()
+            ->fetchAll();
+        return $posts;
+    } catch (PDOException $e) {
+        echo 'There was an error registering the account. Please try again.';
+    }
+}
 
+getAllPosts();
 class Posts
 {
     public function getAllPost()

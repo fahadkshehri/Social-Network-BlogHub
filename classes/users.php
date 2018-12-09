@@ -1,25 +1,20 @@
 <?php
 require 'vendor/autoload.php';
 
-$dsn = 'mysql:host=localhost;dbname=bloghub;charset=utf8';
-$usr = 'root';
-$pwd = 'rootroot';
-
-$pdo = new \Slim\PDO\Database($dsn, $usr, $pwd);
-
-
+include 'getPDO.php';
 
 function registerUser($username, $password)
 {
     try {
+        $pdo = getPDO();
 
-        $selectStatement = $GLOBALS['pdo']->select()
+        $selectStatement = $pdo->select()
             ->from('users')
             ->where('username', '=', $username);
         $pdostatement = $selectStatement->execute();
 
         if ($pdostatement->rowCount() > 0) {
-            return 'Username already exists';
+            return 'Username already exists.';
         } else {
             $insertStatement = $GLOBALS['pdo']->insert(array('username', 'password'))
                 ->into('users')
@@ -36,7 +31,9 @@ function registerUser($username, $password)
 function loginUser($username, $password)
 {
     try {
-        $selectStatement = $GLOBALS['pdo']->select()
+        $pdo = getPDO();
+
+        $selectStatement = $pdo->select()
             ->from('users')
             ->where('username', '=', $username)
             ->where('password', '=', hash('sha512', $password));

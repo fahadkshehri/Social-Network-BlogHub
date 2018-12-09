@@ -11,11 +11,15 @@ session_start();
 
     <div class='container p-5'>
       <?
+        include 'classes/posts.php';
         include 'post_preview.php';
-        for ($i = 0; $i < 5; $i++) {
-            echo_post_preview("Post " . $i, "Post content #" . $i);
+
+        $posts = getAllPosts();
+
+        foreach ($posts as $post) {
+          echo_post_preview($post['title'], $post['username'], $post['content']);
         }
-      ?>
+?>
     </div>
 
   </body>
