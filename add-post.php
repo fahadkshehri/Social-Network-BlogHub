@@ -22,7 +22,8 @@
     <?php
       $s3 = new S3();
       if(isset($_POST['submit'])){
-        if($_POST['name'] == "" || $_POST['bio'] == ""){
+        
+        if($_POST['postTitle'] == "" || $_POST['content'] == ""){
           echo "Title and content can't be left empty\n";
         } else {
           if($_FILES["fileToUpload"]["tmp_name"]  != ""){
