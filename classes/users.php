@@ -8,6 +8,9 @@ include 'getPDO.php';
 
 function registerUser($username, $password)
 {
+    $username = strip_tags($username, '<br>');
+    $password = strip_tags($password, '<br>');
+
     try {
         $pdo = getPDO();
 
@@ -38,6 +41,9 @@ function registerUser($username, $password)
 
 function loginUser($username, $password)
 {
+    $username = strip_tags($username, '<br>');
+    $password = strip_tags($password, '<br>');
+
     try {
         $pdo = getPDO();
 
