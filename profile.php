@@ -10,6 +10,11 @@ $posts = new Posts();
 $username = $_GET['username'];
 $profile = $profiles->getProfile($username);
 
+if (!$profile) {
+  header("Location: 404notfound.php");
+  die();
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,33 +22,40 @@ $profile = $profiles->getProfile($username);
   <body>
     <? include 'menu.php'; ?>
 
-    <div class='container p-5'>
-      <?
-        if (!$profile) {
-          header("Location: 404notfound.php");
-          die();
-        } else {
-          ?>
-          <div class='border p-4 mb-4'>
-            <div class='d-flex flex-row mb-4'>
-              <img class='profile-picture mr-4' src='https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$profile['img']['S']?>' />
+    <div class='wrapper'>
 
-              <h2><?=$profile['profileName']['S'] ?> </h2>
+          <div class="profile-info">
+                <div class="img-resizer-profile">
+                  <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$profile['img']['S']?>">
+                </div>
 
+                <div>
+                  <h3><?=$profile['profileName']['S'] ?></h3>
+                  <p><?=$profile['bio']['S'] ?></p>
+                </div>
+
+                <a class='edit-profile-btn' href='edit-profile.php?username=<?=$username?>'>Edit Profile</a>
 
             </div>
-            <a class='btn btn-dark' href='edit-profile.php?username=<?=$username?>'>Edit Profile</a>
-          </div>
 
-          <h2>Posts:</h2>
-          <?
-            $userPosts = $posts->getUserPosts($username);
-            foreach ($userPosts as $post) {
-              echo_post_preview($post['id'], $post['title'], $post['username'], $post['content']);
-            }
-        }
-      ?>
+            <div style="clear:both;"></div>
 
+            <div class="main-title">
+              <h3 class="main-heading">Posts</h3>
+              <p class="main-decrib">Recent posts <?=$profile['profileName']['S']?> created on BlogHub</p>
+              <a class="main-add-post-btn" href="add-post.php">Add post</a>
+            </div>
+
+            <div class="posts-block">
+              <?
+              $userPosts = $posts->getUserPosts($username);
+              foreach ($userPosts as $post) {
+                echo_post_preview($post['id'], $post['title'], $post['username'], $post['content'], $_post['img_url ']);
+              }
+              ?>
+            </div>
+
+      </div>
     </div>
 
   </body>

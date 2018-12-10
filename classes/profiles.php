@@ -11,7 +11,7 @@ date_default_timezone_set('UTC');
 $sdk = new Aws\Sdk([
     'region' => 'us-west-2',
     'version' => 'latest',
-    'scheme' => 'http'
+    'scheme' => 'http',
 ]);
 
 

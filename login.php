@@ -22,46 +22,43 @@ if (isset($_POST['username']) || isset($_POST['password'])) {
 ?>
 <!DOCTYPE html>
 <html>
-  <?php
-include 'head.php';
-?>
+  <?php include 'head.php'; ?>
   <body>
-  <?php
-include 'menu.php';
-?>
-    <div class='container p-5 mb-2'>
-      <h2>Login to your Account</h2>
-      <form class='border p-4' action='login.php' method='post'>
+    <?php include 'menu.php'; ?>
+    <div class='wrapper'>
 
-        <?
-if (count($errors) > 0) {
-    ?>
-    <ul class='mb-3'>
-    <?
-    foreach ($errors as $error) {
-        ?>
-      <li class='text-danger'><?=$error ?></li>
-    <?
-    }
-    ?>
-    </ul>
-  <?
-}
-?>
+      <h2>Login to your Account</h2>
+
+      <form action='login.php' method='post'>
+
+        <? if (count($errors) > 0) { ?>
+            <ul class='error'>
+              <?foreach ($errors as $error) { ?>
+                <li class='text-danger'><?=$error ?></li>
+              <? }?>
+            </ul>
+        <? } ?>
+
 
         <div class='form-group'>
           <label for='username'>Username:</label>
-          <input type='text' class='form-control' id='username' name='username'>
+          <input class="form" type='text' id='username' name='username'>
         </div>
+
         <div class='form-group'>
           <label for='password'>Password:</label>
-          <input type='password' class='form-control' id='password' name='password'>
+          <input class='form' type='password'  id='password' name='password'>
         </div>
 
-        <button type='submit' class='btn btn-lg btn-dark'>Login</button>
+        <input type='submit' value="Login" >
+        New user? <a href='register.php'>Register here.</a>
       </form>
 
-      New user? <a href='register.php'>Register here.</a>
+
+
+
+
+
     </div>
   </body>
 </html>

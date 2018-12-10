@@ -83,35 +83,37 @@
 
     ?>
 
-
-    <h1>Edit profile</h1>
-    <p>Click to edit the following: </p>
-
-
-
-    <form action="edit-profile.php?username=<? echo $_GET['username']; ?>" method="post" enctype="multipart/form-data">
-      <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$profile['img']['S']?>">
-      <br>
-
-      First name:
-      <input type="text" name="name" id="name" value="<?=$profile['profileName']['S']?>">
-      <br>
-
-      <textarea name="bio" id="bio" rows="4" cols="50"><?=$profile['bio']['S']?></textarea>
-      <br>
-
-      Select image to upload:
-      <input type="file" name="fileToUpload" id="fileToUpload">
-      <br>
-
-      <input type="submit" accept="image/*" value="Upload Image" name="submit">
-      <br>
-
-    </form>
+    <div class="wrapper">
+      <h1>Edit profile</h1>
+      <p>Click to edit the following: </p>
 
 
+      <form action="edit-profile.php?username=<? echo $_GET['username']; ?>" method="post" enctype="multipart/form-data">
 
-    <a href='./'>Back to Home</a>
+        <div class="img-resizer-profile">
+          <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$profile['img']['S']?>">
+        </div>
+
+        <div class="profile-img-upload">
+          <label>Select profile image to upload:</label>
+          <input class="form" type="file" name="fileToUpload" id="fileToUpload">
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <label>Enter your profile name:</label>
+        <input class="form" type="text" name="name" id="name" value="<?=$profile['profileName']['S']?>">
+
+        <label>Enter your bio here</label>
+        <textarea name="bio" id="bio" rows="4" cols="50"><?=$profile['bio']['S']?></textarea>
+
+
+        <input type="submit" accept="image/*" value="Update Profile" name="submit">
+
+      </form>
+
+    </div>
+
 
   </body>
 </html>

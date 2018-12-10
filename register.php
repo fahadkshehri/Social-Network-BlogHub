@@ -33,13 +33,13 @@ if (isset($_POST['username']) || isset($_POST['password'])) {
 
 
 
-    <div class='container p-5 mb-2'>
+    <div class='wrapper'>
       <h2>Register an Account</h2>
-      <form class='border p-4' action='register.php' method='post'>
+      <form action='register.php' method='post'>
         <?
             if (count($errors) > 0) {
                 ?>
-                <ul class='mb-3'>
+                <ul class='errors'>
                 <?
                 foreach ($errors as $error) {
                     ?>
@@ -56,19 +56,23 @@ if (isset($_POST['username']) || isset($_POST['password'])) {
               }
             }
         ?>
+
         <div class='form-group'>
           <label for='username'>Username:</label>
-          <input type='text' class='form-control' id='username' name='username'>
+          <input class="form" type='text' id='username' name='username'>
         </div>
+
         <div class='form-group'>
           <label for='password'>Password:</label>
-          <input type='password' class='form-control' id='password' name='password'>
+          <input class='form' type='password'  id='password' name='password'>
         </div>
 
-        <button type='submit' class='btn btn-lg btn-dark'>Register</button>
+        <input type='submit' value="Register">
+        Already have an account? <a href='login.php'>Login here.</a>
+
       </form>
 
-      Already have an account? <a href='login.php'>Login here.</a>
+
     </div>
   </body>
 </html>

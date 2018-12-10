@@ -16,25 +16,36 @@ if(isset($_GET['id'])){
   <body>
     <?php include 'menu.php'; ?>
 
-    <div class='container p-5'>
-      <?
-        if( isset($_SESSION['username']) ){
-          if($_SESSION['username'] == $post['username']){
-            ?>
-            <a href="delete-post.php?id=<?=$_GET['id']?>">delete post</a>
-            <a href="edit-post.php?id=<?=$_GET['id']?>">edit post</a>
-            <?
-          }
-        }
+    <div class='wrapper'>
 
-      ?>
+      <div class="post-view">
 
-      <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$post['img_url']?>">
+        <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$post['img_url']?>">
 
+        <div class="post-meta">
+          <h2><?=$post['title']?></h2>
+          <h4>By <?=$post['username']?></h4>
+        </div>
 
-      <h2><?=$post['title']?></h2>
-      <h4><?=$post['username']?></h4>
-      <p><?=$post['content']?></P>
+        <div class="post-actions">
+          <?
+            if( isset($_SESSION['username']) ){
+              if($_SESSION['username'] == $post['username']){
+                ?>
+                <a href="delete-post.php?id=<?=$_GET['id']?>">delete post</a>
+                <a href="edit-post.php?id=<?=$_GET['id']?>">edit post</a>
+                <?
+              }
+            }
+          ?>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <p class="post-content"><?=$post['content']?></p>
+
+      </div>
+
     </div>
 
   </body>

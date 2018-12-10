@@ -18,9 +18,6 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'menu.php'; ?>
-    <h1>Add post</h1>
-    <p>Complete the following data to add post:</p>
-
 
     <?php
       $s3 = new S3();
@@ -34,35 +31,35 @@
 
         $posts = new Posts();
         $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
-        echo " succefully added post";
+        echo "<div class='message'>succefully added post</div>";
+        //send to post page
       }
 
 
     ?>
 
-
-    <form action="add-post.php" method="post" enctype="multipart/form-data">
-
-      Enter Post title:
-      <input type="text" name="postTitle" id="postTitle">
+    <div class="wrapper">
+      <h1>Add post</h1>
+      <p>Complete the following data to add post:</p>
       <br>
 
-      Enter Post text:
-      <textarea name="content" id="content" rows="4" cols="50"></textarea>
-      <br>
 
-      Select post image to upload:
-      <input type="file" name="fileToUpload" accept="image/*" id="fileToUpload">
-      <br>
+      <form action="add-post.php" method="post" enctype="multipart/form-data">
 
-      <input type="submit" value="Add post" name="submit">
-      <br>
+        <label for="postTitle">Enter Post title:</label>
+        <input class="form" type="text" name="postTitle" id="postTitle">
 
-    </form>
+        <label for="content">Enter Post text:</label>
+        <textarea name="content" id="content" rows="4" cols="50"></textarea>
 
+        <label for="fileToUpload">Select post image to upload:</label>
+        <input type="file" name="fileToUpload" accept="image/*" id="fileToUpload">
 
+        <input type="submit" value="Add post" name="submit">
 
-    <a href='./'>Back to Home</a>
+      </form>
+
+    </div>
 
   </body>
 </html>

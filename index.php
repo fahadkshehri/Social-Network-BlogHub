@@ -7,19 +7,32 @@ session_start();
   <body>
     <?php include 'menu.php'; ?>
 
-    <a href="add-post.php">Add post</a>
 
-    <div class='container p-5'>
-      <?
-        include 'classes/posts.php';
-        include 'post_preview.php';
+    <div class="wrapper">
 
-        $postsObject = new Posts();
-        $posts = $postsObject->getAllPosts();
-        foreach ($posts as $post) {
-          echo_post_preview($post['id'], $post['title'], $post['username'], $post['content']);
-        }
+      <div class="main-title">
+        <h3 class="main-heading">Main Feed</h3>
+        <p class="main-decrib">Recent posts created on BlogHub</p>
+        <a class="main-add-post-btn" href="add-post.php">Add post</a>
+      </div>
+
+
+
+      <div class='posts-block'>
+        <?
+          include 'classes/posts.php';
+          include 'post_preview.php';
+
+          $postsObject = new Posts();
+          $posts = $postsObject->getAllPosts();
+          foreach ($posts as $post) {
+            echo_post_preview($post['id'], $post['title'], $post['username'], $post['content'], $post['img_url']);
+          }
         ?>
+
+      </div>
+
+
     </div>
 
   </body>

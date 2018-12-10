@@ -53,7 +53,7 @@
         $s3->deletePic($profile['img']['S']);
 
         $posts->removePost($postID);
-        echo "Succefully deleted post";
+        echo "Succefully deleted post\n";
         echo "<a href='./'>Back to Home</a>";
 
         die();

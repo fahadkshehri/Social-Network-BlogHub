@@ -67,36 +67,31 @@
       }
 
     ?>
-
-    <h1>Add post</h1>
-    <p>Complete the following data to add post:</p>
-
-
-    <form action="edit-post.php?id=<? echo $postID; ?>" method="post" enctype="multipart/form-data">
-
-      Enter Post title:
-      <input type="text" name="postTitle" id="postTitle" value="<? echo $currentPost['title']; ?>">
+    <div class="wrapper">
+      <h1>Edit post</h1>
+      <p>Complete the following data to Edit post:</p>
       <br>
 
-      Enter Post text:
-      <textarea name="content" id="content" rows="4" cols="50"><? echo $currentPost['content']; ?></textarea>
-      <br>
+      <form action="edit-post.php?id=<? echo $postID; ?>" method="post" enctype="multipart/form-data">
 
-      <img width="100" src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<? echo $currentPost['img_url']; ?>" alt>
-      <br>
+        <label for="postTitle">Enter Post title:</label>
+        <input class="form" class="form" type="text" name="postTitle" id="postTitle" value="<? echo $currentPost['title']; ?>">
 
-      Select post image to upload:
-      <input type="file" name="fileToUpload" accept="image/*" id="fileToUpload">
-      <br>
+        <label for="content">Enter Post text:</label>
+        <textarea name="content" id="content" rows="4" cols="50"><? echo $currentPost['content']; ?></textarea>
 
-      <input type="submit" value="Edit post" name="submit">
-      <br>
+        <img width="100" src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<? echo $currentPost['img_url']; ?>" alt>
+        <br>
 
-    </form>
+        <label for="fileToUpload">Select post image to upload:</label>
+        <input class="form" type="file" name="fileToUpload" accept="image/*" id="fileToUpload">
+
+        <input type="submit" value="Edit post" name="submit">
 
 
+      </form>
+    </div>
 
-    <a href='./'>Back to Home</a>
 
   </body>
 </html>
