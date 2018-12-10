@@ -122,6 +122,11 @@ class Profiles
 
     public function editProfile($name, $username, $img, $bio)
     {
+        $name = strip_tags($name, '<br>');
+        $bio = strip_tags($bio, '<br>');
+        $img = strip_tags($img, '<br>');
+
+
         $marshaler = new Marshaler();
 
         $keyString = '{"username": "' . $username . '"}';

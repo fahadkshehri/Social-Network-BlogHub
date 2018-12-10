@@ -51,6 +51,11 @@ class Posts
 
     public function addPost($title, $author, $text, $img)
     {
+
+      $text = strip_tags($text, '<br>');
+      $title = strip_tags($title, '<br>');
+      $img = strip_tags($img, '<br>');
+
       $pdo = getPDO();
       // INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
       $insertStatement = $pdo->insert(array('title', 'img_url', 'content', 'owner_id'))
@@ -89,6 +94,10 @@ class Posts
 
     public function editPost($id, $title, $img, $text)
     {
+      $text = strip_tags($text, '<br>');
+      $title = strip_tags($title, '<br>');
+      $img = strip_tags($img, '<br>');
+
       $pdo = getPDO();
       // UPDATE users SET pwd = ? WHERE id = ?
       $updateStatement = $pdo->update(array('title' => $title,'img_url' => $img,'content' => $text))
