@@ -127,7 +127,9 @@ nav {
   margin-bottom: 200px;
 }
 .post-block {
-  margin-bottom: 40px;
+  margin-bottom: 70px;
+  overflow: hidden;
+  display: block;
 }
 .post-view {
   margin-bottom: 400px;

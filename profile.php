@@ -50,7 +50,7 @@ if (!$profile) {
               <?
               $userPosts = $posts->getUserPosts($username);
               foreach ($userPosts as $post) {
-                echo_post_preview($post['id'], $post['title'], $post['username'], $post['content'], $_post['img_url ']);
+                echo_post_preview($post['id'], $post['title'], $post['username'], $post['content'], $_post['img_url']);
               }
               ?>
             </div>
