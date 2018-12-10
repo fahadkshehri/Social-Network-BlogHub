@@ -26,7 +26,7 @@ if(isset($_GET['id'])){
 
         <div class="post-meta">
           <h2><?=$post['title']?></h2>
-          <h4>By <?=$post['username']?></h4>
+          <h4>By <a href="profile.php?username=<?=$post['username']?>"><?=$post['username']?></a></h4>
         </div>
 
         <div class="post-actions">
