@@ -17,7 +17,8 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'menu.php'; ?>
-
+    
+    <div class="wrapper">
 
     <?php
       $posts = new Posts();
@@ -67,7 +68,7 @@
       }
 
     ?>
-    <div class="wrapper">
+
       <h1>Edit post</h1>
       <p>Complete the following data to Edit post:</p>
       <br>

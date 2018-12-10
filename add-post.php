@@ -18,27 +18,36 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'menu.php'; ?>
-
+    <div class="wrapper">
     <?php
       $s3 = new S3();
       if(isset($_POST['submit'])){
+        if($_POST['name'] == "" || $_POST['bio'] == ""){
+          echo "Title and content can't be left empty\n";
+        } else {
+          if($_FILES["fileToUpload"]["tmp_name"]  != ""){
 
-        if($_FILES["fileToUpload"]["tmp_name"]  != ""){
-          $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
-          $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);
+            $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
+            $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);
+
+            $posts = new Posts();
+            $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
+            echo "<div class='message'>succefully added post</div>";
+            //send to post page
+
+          } else {
+            echo "Picture is required for the post \n";
+          }
+
+
         }
 
-
-        $posts = new Posts();
-        $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
-        echo "<div class='message'>succefully added post</div>";
-        //send to post page
       }
 
 
     ?>
 
-    <div class="wrapper">
+
       <h1>Add post</h1>
       <p>Complete the following data to add post:</p>
       <br>

@@ -52,7 +52,7 @@ class S3 {
 
 
   public function deletePic($imgName){
-    if($imgName == "" || $imgName == NULL){
+    if($imgName == "" || $imgName == NULL || $imgName == "default-user.png"){
       return false;
     }
     $s3 = new Aws\S3\S3Client([

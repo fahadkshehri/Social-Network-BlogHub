@@ -17,7 +17,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'menu.php'; ?>
-
+    <div class="wrapper">
     <?php
       $s3 = new S3();
       $profiles = new profiles();
@@ -70,6 +70,10 @@
               echo "Invalid file type: you can upload pictures only";
             }
 
+          } else {
+            $urlToImg = $profile['img']['S'];
+            $profiles->editProfile($_POST['name'], $_GET['username'], $urlToImg, $_POST['bio']);
+            echo " succefully edited";
           }
 
 
@@ -83,7 +87,7 @@
 
     ?>
 
-    <div class="wrapper">
+
       <h1>Edit profile</h1>
       <p>Click to edit the following: </p>
 
