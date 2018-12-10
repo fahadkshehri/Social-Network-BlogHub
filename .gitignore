@@ -2,4 +2,4 @@ dist/
 .idea/
 .vscode/
 /vendor/
-
+node_modules/
