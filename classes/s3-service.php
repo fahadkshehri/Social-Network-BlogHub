@@ -37,7 +37,7 @@ class S3 {
 
 
     $result = $s3->putObject([
-      'Bucket' => 'bloghub-profilepics',
+      'Bucket' => 'bloghub-bucket',
       'Key'    => $key,
       'Body'   => 'this is the body!',
       'ACL' => 'public-read',
@@ -61,7 +61,7 @@ class S3 {
       'scheme' => 'http',
     ]);
 
-    $bucket = 'bloghub-profilepics';
+    $bucket = 'bloghub-bucket';
     $keyname = $imgName;
 
     // Delete an object from the bucket.

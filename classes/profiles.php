@@ -9,14 +9,9 @@ date_default_timezone_set('UTC');
 
 
 $sdk = new Aws\Sdk([
-    'endpoint' => 'http://localhost:8000',
     'region' => 'us-west-2',
     'version' => 'latest',
-    'scheme' => 'http',
-    'credentials' => [
-         'key' => 'not-a-real-key',
-         'secret' => 'not-a-real-secret',
-     ],
+    'scheme' => 'http'
 ]);
 
 
