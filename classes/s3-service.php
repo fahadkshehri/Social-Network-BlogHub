@@ -44,6 +44,12 @@ class S3 {
       'SourceFile' => $imgPath // use this if you want to upload a file from a local location
     ]);
 
+    // We can poll the object until it is accessible
+    $s3->waitUntil('ObjectExists', array(
+        'Bucket' => 'bloghub-bucket',
+        'Key'    => $key
+    ));
+
     //Return the url for the uploaded img
     return $key;
 

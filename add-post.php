@@ -41,7 +41,7 @@
               $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
               echo "<div class='message'>succefully added post</div>";
               //send to post page
-
+              
 
             } else {
               echo "Invalid file type: you can upload pictures only";
