@@ -40,11 +40,10 @@
            die();
         }
 
-
-
       } else {
         //send to not found page
         header("Location: 404notfound.php");
+        die();
       }
 
       $s3 = new S3();
