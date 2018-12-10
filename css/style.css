@@ -25,15 +25,16 @@ a {
   text-decoration: none;
   color: #000;
 }
-
 .img-resizer {
-  width: 100%;
+  width: 99%;
   height: 300px;
   overflow: hidden;
+	border: 1px solid #000;
 }
 .img-resizer img {
-  margin-top: -250px;
-  width: 2000px;
+	margin-top: -100px;
+	margin: 0 auto;
+	min-height: 300px;
 }
 
 nav {
@@ -99,9 +100,12 @@ nav {
 }
 
 .img-resizer-profile img {
-  width: 250px;
-  margin-top: -50px;
-  margin-left: -30px;
+	min-width: 250px;
+	min-height: 250px;
+	max-width: 500px;
+	max-height: 500px;
+	margin-left: -20px;
+	margin-top: -20px;
 }
 
 .profile-edit-img {
