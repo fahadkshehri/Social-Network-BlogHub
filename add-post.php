@@ -41,7 +41,7 @@
               $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
               echo "<div class='message'>succefully added post</div>";
               //send to post page
-              
+
 
             } else {
               echo "Invalid file type: you can upload pictures only";
@@ -76,6 +76,7 @@
 
         <label for="fileToUpload">Select post image to upload:</label>
         <input type="file" name="fileToUpload" accept="image/*" id="fileToUpload">
+        <p>Image has to be less than 2Mb.</p>
 
         <input type="submit" value="Add post" name="submit">
 

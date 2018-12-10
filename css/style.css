@@ -17,11 +17,11 @@ a {
 
 .img-resizer {
   width: 100%;
-  height: 500px;
+  height: 300px;
   overflow: hidden;
 }
 .img-resizer img {
-  margin-top: -500px;
+  margin-top: -250px;
   width: 2000px;
 }
 
