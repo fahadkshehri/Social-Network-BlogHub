@@ -53,26 +53,25 @@
         $s3->deletePic($profile['img']['S']);
 
         $posts->removePost($postID);
-        echo "Succefully deleted post\n";
+        echo "Succefully deleted post <br>";
         echo "<a href='./'>Back to Home</a>";
 
         die();
       }
 
     ?>
-
-    <h1>Delete post</h1>
-    <p>Are you sure you want to delete the post?</p>
-
-
-    <form action="delete-post.php?id=<? echo $postID; ?>" method="post" enctype="multipart/form-data">
-      <input type="submit" value="Delete post" name="submit">
-      <br>
-    </form>
+    <div class="wrapper">
+      <h1>Delete post</h1>
+      <p>Are you sure you want to delete the post?</p>
 
 
+      <form action="delete-post.php?id=<? echo $postID; ?>" method="post" enctype="multipart/form-data">
+        <input type="submit" value="Delete post" name="submit">
+        <br>
+      </form>
 
-    <a href='./'>Back to Home</a>
+      <a href='./'>Back to Home</a>
+    </div>  
 
   </body>
 </html>

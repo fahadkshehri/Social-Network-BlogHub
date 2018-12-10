@@ -29,13 +29,24 @@
 
           if($_FILES["fileToUpload"]["tmp_name"]  !== ""){
 
-            $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
-            $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);
 
-            $posts = new Posts();
-            $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
-            echo "<div class='message'>succefully added post</div>";
-            //send to post page
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check !== false) {
+
+              $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
+
+              $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);
+
+              $posts = new Posts();
+              $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
+              echo "<div class='message'>succefully added post</div>";
+              //send to post page
+
+
+            } else {
+              echo "Invalid file type: you can upload pictures only";
+            }
+
 
           } else {
             echo "Picture is required for the post \n";
