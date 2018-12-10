@@ -8,7 +8,7 @@ $profiles = new Profiles();
 
     <a class="home-btn" href='./'>Home</a>
 
-    <img src="img/logo.png" alt="logo">
+    <img src="https://s3-us-west-2.amazonaws.com/bloghub-profilepics/logo.PNG" alt="logo">
 
   <? if (isset($_SESSION['username'])) { ?>
 
