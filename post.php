@@ -29,7 +29,7 @@ if(isset($_GET['id'])){
 
       ?>
 
-      <img src="https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<?=$post['img_url']?>">
+      <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$post['img_url']?>">
 
 
       <h2><?=$post['title']?></h2>

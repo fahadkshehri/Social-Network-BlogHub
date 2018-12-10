@@ -90,7 +90,7 @@
 
 
     <form action="edit-profile.php?username=<? echo $_GET['username']; ?>" method="post" enctype="multipart/form-data">
-      <img src="https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<?=$profile['img']['S']?>">
+      <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$profile['img']['S']?>">
       <br>
 
       First name:

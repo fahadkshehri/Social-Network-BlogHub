@@ -10,7 +10,7 @@ $profiles = new Profiles();
 if (isset($_SESSION['username'])) {
     ?>
     <a class='mr-2' href='profile.php?username=<? echo $_SESSION['username'] ?>'>
-      <img class='profile-picture-sm' src='https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<? echo $profiles->getImage($_SESSION['username']); ?>'/>
+      <img class='profile-picture-sm' src='https://s3-us-west-2.amazonaws.com/bloghub-bucket/<? echo $profiles->getImage($_SESSION['username']); ?>'/>
     </a>
     <a class='btn btn-outline-light btn-lg mr-2' href='logout.php'>Logout</a>
     <?

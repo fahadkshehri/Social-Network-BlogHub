@@ -26,7 +26,7 @@ $profile = $profiles->getProfile($username);
           ?>
           <div class='border p-4 mb-4'>
             <div class='d-flex flex-row mb-4'>
-              <img class='profile-picture mr-4' src='https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<?=$profile['img']['S']?>' />
+              <img class='profile-picture mr-4' src='https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$profile['img']['S']?>' />
 
               <h2><?=$profile['profileName']['S'] ?> </h2>
 

@@ -7,14 +7,9 @@ use Aws\DynamoDb\Exception\DynamoDbException;
 use Aws\DynamoDb\Marshaler;
 
 $sdk = new Aws\Sdk([
-    'endpoint' => 'http://localhost:8000',
     'region' => 'us-west-2',
     'version' => 'latest',
-    'scheme' => 'http',
-    'credentials' => [
-         'key' => 'not-a-real-key',
-         'secret' => 'not-a-real-secret',
-     ],
+    'scheme' => 'http'
 ]);
 
 $tableName = 'bloghub-profiles';

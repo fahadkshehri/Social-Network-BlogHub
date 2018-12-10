@@ -82,7 +82,7 @@
       <textarea name="content" id="content" rows="4" cols="50"><? echo $currentPost['content']; ?></textarea>
       <br>
 
-      <img width="100" src="https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<? echo $currentPost['img_url']; ?>" alt>
+      <img width="100" src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<? echo $currentPost['img_url']; ?>" alt>
       <br>
 
       Select post image to upload:
