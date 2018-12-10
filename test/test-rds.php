@@ -1,7 +1,9 @@
 <?php
-  include 'getPDO.php';
+  include '../classes/getPDO.php';
   $pdo = getPDO();
   var_dump($pdo);
+  echo '<br>';
+  echo '<br>';
 
   $users = $pdo->select()
       ->from('users')
@@ -9,6 +11,8 @@
       ->fetchAll();
 
   var_dump($users);
+  echo '<br>';
+  echo '<br>';
 
   $posts = $pdo->select()
       ->from('posts')
@@ -16,6 +20,8 @@
       ->fetchAll();
 
   var_dump($posts);
+  echo '<br>';
+  echo '<br>';
 
   $follows = $pdo->select()
       ->from('follows')

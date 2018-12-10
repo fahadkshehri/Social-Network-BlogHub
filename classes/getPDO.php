@@ -1,4 +1,7 @@
 <?
+set_include_path('../');
+require 'vendor/autoload.php';
+
 function getPDO()
 {
     $host = 'localhost';
