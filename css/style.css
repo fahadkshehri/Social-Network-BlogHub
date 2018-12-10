@@ -126,7 +126,9 @@ nav {
 .posts-block {
   margin-bottom: 200px;
 }
-
+.post-block {
+  margin-bottom: 40px;
+}
 .post-view {
   margin-bottom: 400px;
 
