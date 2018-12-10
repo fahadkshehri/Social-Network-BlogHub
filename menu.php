@@ -22,4 +22,5 @@ $profiles = new Profiles();
 
     <? } ?>
   </div>
+  <div style="clear:both;">
 </nav>
