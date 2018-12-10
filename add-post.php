@@ -1,4 +1,6 @@
 <?
+  session_start();
+
   include ("classes/s3-service.php");
   include ("classes/posts.php");
 
@@ -22,11 +24,16 @@
 
     <?php
       $s3 = new S3();
-
       if(isset($_POST['submit'])){
-        $urlToImg = $s3->uploadPostPic($_FILES["fileToUpload"]["tmp_name"], $username );
+
+        if($_FILES["fileToUpload"]["tmp_name"]  != ""){
+          $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
+          $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);
+        }
+
+
         $posts = new Posts();
-        $posts->addPost($_POST['postTitle'], 1, $_POST['content'], $urlToImg);
+        $posts->addPost($_POST['postTitle'], $_SESSION['id'], $_POST['content'], $urlToImg);
         echo " succefully added post";
       }
 
@@ -45,7 +52,7 @@
       <br>
 
       Select post image to upload:
-      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="file" name="fileToUpload" accept="image/*" id="fileToUpload">
       <br>
 
       <input type="submit" value="Add post" name="submit">

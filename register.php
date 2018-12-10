@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errors = array();
 if (isset($_POST['username']) || isset($_POST['password'])) {
     include 'classes/users.php';

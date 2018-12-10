@@ -27,14 +27,39 @@ $tableName = 'bloghub-profiles';
 
 class Profiles
 {
-    public function addProfile($username)
-    {
-      $item = $GLOBALS['marshaler']->marshalJson('
+
+    public function getImage($username){
+      $key = $GLOBALS['marshaler']->marshalJson('
           {
               "username": "' . $username . '"
           }
       ');
 
+      $params = [
+          'TableName' => $GLOBALS['tableName'],
+          'Key' => $key,
+      ];
+
+
+      try {
+          $result = $GLOBALS['dynamodb']->getItem($params);
+          return $result['Item']['img']['S'];
+      } catch (DynamoDbException $e) {
+          echo "Unable to query:\n";
+          echo $e->getMessage() . "\n";
+      }
+
+    }
+
+
+    public function addProfile($username)
+    {
+      $item = $GLOBALS['marshaler']->marshalJson('
+          {
+              "username": "' . $username . '",
+              "img": "default-user.png"
+          }
+      ');
       $params = [
           'TableName' => $GLOBALS['tableName'],
           'Item' => $item
@@ -49,6 +74,8 @@ class Profiles
           echo "Unable to add item:\n";
           echo $e->getMessage() . "\n";
       }
+
+
     }
 
     public function getProfile($username)

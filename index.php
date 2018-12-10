@@ -7,7 +7,7 @@ session_start();
   <body>
     <?php include 'menu.php'; ?>
 
-    <a href="add-post.php"></a>
+    <a href="add-post.php">Add post</a>
 
     <div class='container p-5'>
       <?

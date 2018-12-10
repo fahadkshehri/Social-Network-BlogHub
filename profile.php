@@ -26,19 +26,11 @@ $profile = $profiles->getProfile($username);
           ?>
           <div class='border p-4 mb-4'>
             <div class='d-flex flex-row mb-4'>
-              <img class='profile-picture mr-4' src='default-user.png' />
+              <img class='profile-picture mr-4' src='https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<?=$profile['img']['S']?>' />
 
-              <h2><?=$username ?> </h2>
-              <ul>
-                <?
-                  foreach ($profile as $key => $val) {
-                    if ($key === 'username') continue;
-                    ?>
-                    <li><?=$key?>: <?=$val['S']?></li>
-                    <?
-                  }
-                ?>
-              </ul>
+              <h2><?=$profile['profileName']['S'] ?> </h2>
+
+
             </div>
             <a class='btn btn-dark' href='edit-profile.php?username=<?=$username?>'>Edit Profile</a>
           </div>

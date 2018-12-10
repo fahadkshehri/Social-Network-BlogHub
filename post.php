@@ -21,7 +21,7 @@ if(isset($_GET['id'])){
         if( isset($_SESSION['username']) ){
           if($_SESSION['username'] == $post['username']){
             ?>
-            <a href="#">delete post</a>
+            <a href="delete-post.php?id=<?=$_GET['id']?>">delete post</a>
             <a href="edit-post.php?id=<?=$_GET['id']?>">edit post</a>
             <?
           }
@@ -29,7 +29,7 @@ if(isset($_GET['id'])){
 
       ?>
 
-      <img src="<?=$post['img_url']?>">
+      <img src="https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<?=$post['img_url']?>">
 
 
       <h2><?=$post['title']?></h2>

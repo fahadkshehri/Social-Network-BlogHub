@@ -11,7 +11,18 @@ date_default_timezone_set('UTC');
 
 class S3 {
 
-  public function uploadPic($imgPath,$username){
+
+  public function generateRandomString($length) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $charactersLength = strlen($characters);
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      return $randomString;
+  }
+
+  public function uploadPic($imgPath, $imageFileType, $username){
     $s3 = new Aws\S3\S3Client([
       'region'  => 'us-west-2',
       'version' => 'latest',
@@ -19,7 +30,11 @@ class S3 {
     ]);
 
     // Send a PutObject request and get the result object.
-    $key = 'profile-'. $username .'.jpg';
+    $randomString = $this->generateRandomString(10);
+
+
+    $key = $randomString.'-'. $username .'.'.$imageFileType.'';
+
 
     $result = $s3->putObject([
       'Bucket' => 'bloghub-profilepics',
@@ -30,33 +45,33 @@ class S3 {
     ]);
 
     //Return the url for the uploaded img
-    return $result["@metadata"]["effectiveUri"];
+    return $key;
 
   }
 
-  public function uploadPostPic($imgPath,$postID){
+
+
+  public function deletePic($imgName){
+    if($imgName == "" || $imgName == NULL){
+      return false;
+    }
     $s3 = new Aws\S3\S3Client([
       'region'  => 'us-west-2',
       'version' => 'latest',
       'scheme' => 'http',
     ]);
 
-    // Send a PutObject request and get the result object.
-    $key = 'profile-'. $username .'.jpg';
+    $bucket = 'bloghub-profilepics';
+    $keyname = $imgName;
 
-    $result = $s3->putObject([
-      'Bucket' => 'bloghub-profilepics',
-      'Key'    => $key,
-      'Body'   => 'this is the body!',
-      'ACL' => 'public-read',
-      'SourceFile' => $imgPath // use this if you want to upload a file from a local location
+    // Delete an object from the bucket.
+    $s3->deleteObject([
+        'Bucket' => $bucket,
+        'Key'    => $keyname
     ]);
 
-    //Return the url for the uploaded img
-    return $result["@metadata"]["effectiveUri"];
 
   }
-
 
 
 }

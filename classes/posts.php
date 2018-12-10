@@ -79,6 +79,11 @@ class Posts
     public function removePost($postID)
     {
       $pdo = getPDO();
+      $deleteStatement = $pdo->delete()
+                       ->from('posts')
+                       ->where('id', '=', $postID);
+
+      $affectedRows = $deleteStatement->execute();
 
     }
 

@@ -53,7 +53,9 @@
         $urlToImg = $currentPost['img_url'];
 
         if($_FILES["fileToUpload"]["tmp_name"]  != ""){
-          $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $username );
+          $s3->deletePic($profile['img']['S']);
+          $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
+          $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);
         }
 
         $posts->editPost($postID, $_POST['postTitle'], $urlToImg, $_POST['content']);
@@ -80,14 +82,14 @@
       <textarea name="content" id="content" rows="4" cols="50"><? echo $currentPost['content']; ?></textarea>
       <br>
 
-      <img width="100" src="<? echo $currentPost['img_url']; ?>" alt>
+      <img width="100" src="https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<? echo $currentPost['img_url']; ?>" alt>
       <br>
 
       Select post image to upload:
-      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="file" name="fileToUpload" accept="image/*" id="fileToUpload">
       <br>
 
-      <input type="submit" value="Add post" name="submit">
+      <input type="submit" value="Edit post" name="submit">
       <br>
 
     </form>

@@ -48,37 +48,49 @@
 
       if(isset($_POST['submit'])){
 
-        $urlToImg = " ";
-
-        if($_FILES["fileToUpload"]["tmp_name"]  != ""){
-          $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $username );
-        }
+        $urlToImg = $profile['img']['S'];
 
         if($_POST['name'] == "" || $_POST['bio'] == ""){
+
           echo "Bio and name can't be left empty\n";
+
         } else {
-          $profiles->editProfile($_POST['name'], $_GET['username'], $urlToImg, $_POST['bio']);
-          echo " succefully edited";
+
+          if($_FILES["fileToUpload"]["tmp_name"]  != ""){
+
+
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check !== false) {
+              $s3->deletePic($profile['img']['S']);
+              $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
+              $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);
+              $profiles->editProfile($_POST['name'], $_GET['username'], $urlToImg, $_POST['bio']);
+              echo " succefully edited";
+            } else {
+              echo "Invalid file type: you can upload pictures only";
+            }
+
+          }
+
+
         }
+
         $username = $_GET['username'];
         $profile = $profiles->getProfile($username);
-
-
-
 
       }
 
 
     ?>
 
-    
+
     <h1>Edit profile</h1>
     <p>Click to edit the following: </p>
 
 
 
     <form action="edit-profile.php?username=<? echo $_GET['username']; ?>" method="post" enctype="multipart/form-data">
-      <img src="<?=$profile['img']['S']?>">
+      <img src="https://s3-us-west-2.amazonaws.com/bloghub-profilepics/<?=$profile['img']['S']?>">
       <br>
 
       First name:
@@ -92,7 +104,7 @@
       <input type="file" name="fileToUpload" id="fileToUpload">
       <br>
 
-      <input type="submit" value="Upload Image" name="submit">
+      <input type="submit" accept="image/*" value="Upload Image" name="submit">
       <br>
 
     </form>
