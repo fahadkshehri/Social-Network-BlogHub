@@ -67,6 +67,7 @@ class Profiles
 
         try {
             $result = $GLOBALS['dynamodb']->getItem($params);
+            return $result['Item'];
         } catch (DynamoDbException $e) {
             echo "Unable to query:\n";
             echo $e->getMessage() . "\n";

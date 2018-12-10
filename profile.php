@@ -1,32 +1,57 @@
 <?php
 include 'classes/profiles.php';
+include 'classes/posts.php';
+include 'post_preview.php';
 
 session_start();
-$profile = new Profiles();
+$profiles = new Profiles();
+$posts = new Posts();
 
-if(isset( $_GET['username'])){
-  $username = $_GET['username'];
-  $profile->getProfile($username);
-}
-
+$username = $_GET['username'];
+$profile = $profiles->getProfile($username);
 
 ?>
 <!DOCTYPE html>
 <html>
-  <?php include 'head.php'; ?>
+  <? include 'head.php'; ?>
   <body>
-    <?php include 'menu.php'; ?>
+    <? include 'menu.php'; ?>
 
     <div class='container p-5'>
-      <h1>Profile Page</h1>
+      <?
+        if (!$profile) {
+          ?>
+            <h2>User '<?=$username?>' doesn't exist.</h2>
+          <?
+        } else {
+          ?>
+          <div class='border p-4 mb-4'>
+            <div class='d-flex flex-row mb-4'>
+              <img class='profile-picture mr-4' src='default-user.png' />
 
-      <div class='border p-4 d-flex flex-row'>
-        <img class='profile-picture mr-4' src='default-user.png' />
+              <h2><?=$username ?> </h2>
+              <ul>
+                <?
+                  foreach ($profile as $key => $val) {
+                    if ($key === 'username') continue;
+                    ?>
+                    <li><?=$key?>: <?=$val['S']?></li>
+                    <?
+                  }
+                ?>
+              </ul>
+            </div>
+            <a class='btn btn-dark' href='edit-profile.php?username=<?=$username?>'>Edit Profile</a>
+          </div>
 
-        <h2>Username: <?=$username ?> </h2>
-
-      </div>
-      <a class='btn btn-primary' href='edit-profile.php'>Edit Profile</a>
+          <h2>Posts:</h2>
+          <?
+            $userPosts = $posts->getUserPosts($username);
+            foreach ($userPosts as $post) {
+              echo_post_preview($post['id'], $post['title'], $post['username'], $post['content']);
+            }
+        }
+      ?>
       
     </div>
 

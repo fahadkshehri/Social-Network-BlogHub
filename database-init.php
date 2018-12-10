@@ -55,11 +55,10 @@ $marshaler = new Marshaler();
 
 $item = $marshaler->marshalJson('
     {
-        "username": "fahad",
-        "info": {
-            "plot": "Nothing happens at all.",
-            "rating": 0
-        }
+        "username": "fatih",
+        "school": "UWB",
+        "color": "Blue",
+        "location": "Seattle"
     }
 ');
 
