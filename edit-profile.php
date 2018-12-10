@@ -55,9 +55,10 @@
           echo "Bio and name can't be left empty\n";
 
         } else {
+          
+          echo $_FILES["fileToUpload"]["tmp_name"];
 
           if($_FILES["fileToUpload"]["tmp_name"]  != ""){
-
 
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
             if($check !== false) {
