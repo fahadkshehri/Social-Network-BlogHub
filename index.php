@@ -14,12 +14,12 @@ session_start();
         include 'classes/posts.php';
         include 'post_preview.php';
 
-        $posts = getAllPosts();
-
+        $postsObject = new Posts();
+        $posts = $postsObject->getAllPosts();
         foreach ($posts as $post) {
-          echo_post_preview($post['title'], $post['username'], $post['content']);
+          echo_post_preview($post['id'], $post['title'], $post['username'], $post['content']);
         }
-?>
+        ?>
     </div>
 
   </body>
