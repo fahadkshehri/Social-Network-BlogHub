@@ -22,11 +22,12 @@
     <?php
       $s3 = new S3();
       if(isset($_POST['submit'])){
-        
+
         if($_POST['postTitle'] == "" || $_POST['content'] == ""){
           echo "Title and content can't be left empty\n";
         } else {
-          if($_FILES["fileToUpload"]["tmp_name"]  != ""){
+
+          if($_FILES["fileToUpload"]["tmp_name"]  !== ""){
 
             $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
             $urlToImg = $s3->uploadPic($_FILES["fileToUpload"]["tmp_name"], $imageFileType, $username);

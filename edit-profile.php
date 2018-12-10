@@ -56,8 +56,6 @@
 
         } else {
           
-          echo $_FILES["fileToUpload"]["tmp_name"];
-
           if($_FILES["fileToUpload"]["tmp_name"]  != ""){
 
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
