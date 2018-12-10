@@ -5,7 +5,6 @@ require 'vendor/autoload.php';
 include 'getPDO.php';
 
 
-
 class Posts
 {
     public function getAllPosts()
@@ -52,8 +51,9 @@ class Posts
 
     public function addPost($title, $author, $text, $img)
     {
+      $pdo = getPDO();
       // INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
-      $insertStatement = $GLOBALS['pdo']->insert(array('title', 'img_url', 'content', 'owner_id'))
+      $insertStatement = $pdo->insert(array('title', 'img_url', 'content', 'owner_id'))
                              ->into('posts')
                              ->values(array($title, $img, $text, $author));
 
@@ -63,10 +63,13 @@ class Posts
 
     public function getPost($postID)
     {
+      $pdo = getPDO();
       // SELECT * FROM users WHERE id = ?
-      $selectStatement = $GLOBALS['pdo']->select()
+      $selectStatement = $pdo->select()
                              ->from('posts')
-                             ->where('id', '=', $postID);
+                             ->join('users', 'posts.owner_id', '=', 'users.id')
+                             ->where('posts.id', '=', $postID)
+                             ;
 
       $stmt = $selectStatement->execute();
       $data = $stmt->fetch();
@@ -75,13 +78,15 @@ class Posts
 
     public function removePost($postID)
     {
+      $pdo = getPDO();
 
     }
 
     public function editPost($id, $title, $img, $text)
     {
+      $pdo = getPDO();
       // UPDATE users SET pwd = ? WHERE id = ?
-      $updateStatement = $GLOBALS['pdo']->update(array('title' => $title,'img_url' => $img,'content' => $text))
+      $updateStatement = $pdo->update(array('title' => $title,'img_url' => $img,'content' => $text))
                              ->table('posts')
                              ->where('id', '=', $id);
 

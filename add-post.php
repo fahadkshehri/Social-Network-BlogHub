@@ -1,6 +1,14 @@
 <?
   include ("classes/s3-service.php");
   include ("classes/posts.php");
+
+  if( !(isset($_SESSION['username'])) ){
+    header("Location: login.php");
+    die();
+  }
+
+
+
 ?>
 
 <!DOCTYPE html>

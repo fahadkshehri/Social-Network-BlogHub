@@ -1,6 +1,15 @@
 <?
+
+  session_start();
+
+  if( !(isset($_SESSION['username'])) ){
+    header("Location: login.php");
+    die();
+  }
+
   include ("classes/s3-service.php");
   include ("classes/posts.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -8,16 +17,34 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'menu.php'; ?>
-    <h1>Add post</h1>
-    <p>Complete the following data to add post:</p>
 
 
     <?php
       $posts = new Posts();
 
       if( isset($_GET['id']) ){
+        //get the post informarion
         $postID = $_GET['id'];
         $currentPost = $posts->getPost($postID);
+
+        //if post not found send to not found page
+        if(count($currentPost) == 1){
+          header("Location: 404notfound.php");
+          die();
+        }
+
+        //if found check if this is the owner
+        if( $_SESSION['username'] != $currentPost['username'] ){
+          //access not permitted
+           echo "<h1>Access denied</h1>";
+           die();
+        }
+
+
+
+      } else {
+        //send to not found page
+        header("Location: 404notfound.php");
       }
 
       $s3 = new S3();
@@ -38,9 +65,10 @@
 
       }
 
-
-
     ?>
+
+    <h1>Add post</h1>
+    <p>Complete the following data to add post:</p>
 
 
     <form action="edit-post.php?id=<? echo $postID; ?>" method="post" enctype="multipart/form-data">

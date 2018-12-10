@@ -70,13 +70,38 @@ $params = [
 
 try {
     $result = $dynamodb->putItem($params);
-    echo "Added item: $year - $title\n";
+    echo "Added item.\n";
 
 } catch (DynamoDbException $e) {
     echo "Unable to add item:\n";
     echo $e->getMessage() . "\n";
 }
 
+
+$item = $marshaler->marshalJson('
+    {
+        "username": "fatih",
+        "info": {
+            "plot": "Nothing happens at all.",
+            "rating": 0
+        }
+    }
+');
+
+$params = [
+    'TableName' => $tableName,
+    'Item' => $item
+];
+
+
+try {
+    $result = $dynamodb->putItem($params);
+    echo "Added item.\n";
+
+} catch (DynamoDbException $e) {
+    echo "Unable to add item:\n";
+    echo $e->getMessage() . "\n";
+}
 
 
 ?>

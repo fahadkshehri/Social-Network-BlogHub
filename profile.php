@@ -20,9 +20,8 @@ $profile = $profiles->getProfile($username);
     <div class='container p-5'>
       <?
         if (!$profile) {
-          ?>
-            <h2>User '<?=$username?>' doesn't exist.</h2>
-          <?
+          header("Location: 404notfound.php");
+          die();
         } else {
           ?>
           <div class='border p-4 mb-4'>
@@ -52,7 +51,7 @@ $profile = $profiles->getProfile($username);
             }
         }
       ?>
-      
+
     </div>
 
   </body>
