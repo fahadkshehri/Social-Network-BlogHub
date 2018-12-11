@@ -20,8 +20,8 @@ if(isset($_GET['id'])){
 
       <div class="post-view">
 
-        <div style="max-width: 100%">
-          <img src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$post['img_url']?>">
+        <div>
+          <img style="max-width: 100%;" src="https://s3-us-west-2.amazonaws.com/bloghub-bucket/<?=$post['img_url']?>">
         </div>
 
         <div class="post-meta">
