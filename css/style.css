@@ -26,6 +26,7 @@ a {
   color: #000;
 }
 .img-resizer {
+	text-align: center;
   width: 99%;
   height: 300px;
   overflow: hidden;
