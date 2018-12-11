@@ -6,7 +6,7 @@
 @font-face {
 	font-family: Raleway;
   font-weight: bold;
-	src:url(fonts/Raleway-bold.ttf);
+	src:url(fonts/Raleway-Bold.ttf);
 }
 
 body {
@@ -194,7 +194,7 @@ form {
 input[type="submit"] {
   margin-top: 40px;
   font-size: 15px;
-  font-family: 'Raleway';
+  font-family: Raleway;
   color: white;
   text-align: center;
   width: 140px;
